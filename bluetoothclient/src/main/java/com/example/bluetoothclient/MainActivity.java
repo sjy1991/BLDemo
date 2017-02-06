@@ -28,9 +28,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         butterknife.ButterKnife.bind(this);
-        checkBT();
+        checkBT(this);
     }
 
+    /**
+     * 检查蓝牙
+     * @param context
+     */
     private void checkBT(Context context) {
         mBTadapter = BluetoothAdapter.getDefaultAdapter();
         if(mBTadapter != null){
@@ -45,10 +49,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     @butterknife.OnClick({R.id.search_btn, R.id.send_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.search_btn:
+                show("客户端:开始搜索设备");
                 break;
             case R.id.send_btn:
                 break;
@@ -68,5 +74,15 @@ public class MainActivity extends AppCompatActivity {
                 mTvMsg.setText(mSb.toString());
             }
         });
+    }
+
+    /**
+     *
+     */
+    private class clientThread extends Thread{
+        @Override
+        public void run() {
+            super.run();
+        }
     }
 }
